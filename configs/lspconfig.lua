@@ -1,7 +1,7 @@
 local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
-local lspconfig = require "lspconfig"
+local lspconfig = require("lspconfig")
 
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- local autoformat_on_attach = function(client, bufnr)
@@ -20,23 +20,23 @@ local lspconfig = require "lspconfig"
 -- end
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "clangd" }
+local servers = { "html", "cssls", "tsserver", "clangd", "volar" }
 
 for _, server in ipairs(servers) do
-  lspconfig[server].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+	lspconfig[server].setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+	})
 end
 
 -- lspconfig.pyright.setup { blabla}
 
 -- lspconfig.gopls
-require "custom/configs/lsp/go"
+require("custom/configs/lsp/go")
 
 -- lspconfig.rust_analyzer
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
-require "custom/configs/lsp/rust"
+lspconfig.rust_analyzer.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+require("custom/configs/lsp/rust")

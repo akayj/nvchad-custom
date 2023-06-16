@@ -8,15 +8,20 @@ M.treesitter = {
     "css",
     "vim",
     "lua",
+
+    -- webdev
     "html",
     "javascript",
     "typescript",
     "tsx",
+    "vue",
+
     "markdown",
     "markdown_inline",
     "yaml",
     "toml",
     "json",
+
     "go",
     "gomod",
     "gosum",
@@ -44,6 +49,9 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
+
+    -- "vetur-vls", -- vue
+    "vue-language-server", -- vue(volar)
 
     -- c/cpp stuff
     "clangd",
