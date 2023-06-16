@@ -16,7 +16,7 @@ This can be used as an example custom config for NvChad, this branch is a minima
     │   ├── init.lua
     │   ├── mappings.lua
     │   └── utils.lua
-    ├── custom -> /Users/yj/gits/github/nvchad-custom
+    ├── custom <- PUT HERE
     └── plugins
         ├── configs
         │   ├── cmp.lua
