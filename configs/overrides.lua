@@ -49,6 +49,9 @@ M.mason = {
     "clangd",
     "clang-format",
 
+    -- sh/bash
+    "shellcheck",
+
     -- golang
     "gopls",
 
