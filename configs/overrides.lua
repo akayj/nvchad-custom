@@ -2,15 +2,23 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "vim",
+    "vimdoc",
+
     "bash",
     "c",
     "cpp",
-    "css",
-    "vim",
+
     "lua",
+    "luadoc",
+
+    "dockerfile",
 
     -- webdev
+    "css",
+    "scss",
     "html",
+    "htmldjango",
     "javascript",
     "typescript",
     "tsx",
@@ -21,6 +29,7 @@ M.treesitter = {
     "yaml",
     "toml",
     "json",
+    "gitignore",
 
     "go",
     "gomod",
