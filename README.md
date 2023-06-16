@@ -5,7 +5,9 @@ This can be used as an example custom config for NvChad, this branch is a minima
 ## Project structure
 
 ```sh
+$ tree NvChad
 
+NvChad
 ├── LICENSE
 ├── init.lua
 ├── lazy-lock.json
