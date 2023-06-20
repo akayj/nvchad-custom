@@ -29,11 +29,15 @@ M.treesitter = {
     "yaml",
     "toml",
     "json",
+
     "gitignore",
+    "git_config",
+    "gitcommit",
 
     "go",
     "gomod",
     "gosum",
+
     "rust",
     "python",
     "proto",
