@@ -1,101 +1,103 @@
 local M = {}
 
 M.treesitter = {
-  ensure_installed = {
-    "vim",
-    "vimdoc",
+	ensure_installed = {
+		"vim",
+		"vimdoc",
 
-    "bash",
-    "c",
-    "cpp",
+		"bash",
+		"c",
+		"cpp",
 
-    "lua",
-    "luadoc",
+		"lua",
+		"luadoc",
 
-    "dockerfile",
+		"dockerfile",
 
-    -- webdev
-    "css",
-    "scss",
-    "html",
-    "htmldjango",
-    "javascript",
-    "typescript",
-    "tsx",
-    "vue",
+		-- webdev
+		"css",
+		"scss",
+		"html",
+		"htmldjango",
+		"javascript",
+		"typescript",
+		"tsx",
+		"vue",
 
-    "markdown",
-    "markdown_inline",
-    "yaml",
-    "toml",
-    "json",
+		"markdown",
+		"markdown_inline",
+		"yaml",
+		"toml",
+		"json",
 
-    "gitignore",
-    "git_config",
-    "gitcommit",
+		"gitignore",
+		"git_config",
+		"gitcommit",
 
-    "go",
-    "gomod",
-    "gosum",
+		"go",
+		"gomod",
+		"gosum",
 
-    "rust",
-    "python",
-    "proto",
-  },
-  indent = {
-    enable = true,
-    -- disable = {
-    --   "python"
-    -- },
-  },
+		"rust",
+		"python",
+		"proto",
+	},
+	indent = {
+		enable = true,
+		-- disable = {
+		--   "python"
+		-- },
+	},
 }
 
 M.mason = {
-  ensure_installed = {
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
+	ensure_installed = {
+		-- beautysh
+		"beautysh",
 
-    -- web dev stuff
-    "css-lsp",
-    "html-lsp",
-    "typescript-language-server",
-    "deno",
-    "prettier",
+		-- lua stuff
+		"lua-language-server",
+		"stylua",
 
-    -- "vetur-vls", -- vue
-    "vue-language-server", -- vue(volar)
+		-- web dev stuff
+		"css-lsp",
+		"html-lsp",
+		"typescript-language-server",
+		"deno",
+		"prettier",
 
-    -- c/cpp stuff
-    "clangd",
-    "clang-format",
+		-- "vetur-vls", -- vue
+		"vue-language-server", -- vue(volar)
 
-    -- sh/bash
-    "shellcheck",
+		-- c/cpp stuff
+		"clangd",
+		"clang-format",
 
-    -- golang
-    "gopls",
+		-- sh/bash
+		"shellcheck",
 
-    -- rust
-    "rust-analyzer",
-  },
+		-- golang
+		"gopls",
+
+		-- rust
+		"rust-analyzer",
+	},
 }
 
 -- git support in nvimtree
 M.nvimtree = {
-  git = {
-    enable = true,
-  },
+	git = {
+		enable = true,
+	},
 
-  renderer = {
-    highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
-  },
+	renderer = {
+		highlight_git = true,
+		icons = {
+			show = {
+				git = true,
+			},
+		},
+	},
 }
-
 
 return M
