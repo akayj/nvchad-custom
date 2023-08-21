@@ -75,6 +75,7 @@ M.mason = {
 
 		-- sh/bash
 		"shellcheck",
+    "shfmt",
 
 		-- golang
 		"gopls",

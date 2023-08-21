@@ -22,6 +22,39 @@ local plugins = {
     end, -- Override to setup mason-lspconfig
   },
 
+  {
+    "nvimdev/guard.nvim",
+    init = function (_)
+      local ft = require('guard.filetype')
+      ft('go'):fmt('lsp')
+        :append('golines')
+        :lint('golangci')
+
+      ft('sh'):fmt('shfmt')
+        :lint('shellcheck')
+
+      ft('typescript,javascript,typescriptreact'):fmt('prettier')
+    end,
+    config = function()
+      -- local ft = require('guard.filetype')
+      --
+      -- ft('go'):fmt('lsp')
+      --   :append('golines')
+      --   :lint('golangci')
+      --
+      -- ft('sh'):fmt('shfmt')
+      --   :lint('shellcheck')
+
+      -- Call setup() LAST!
+      require('guard').setup({
+        -- the only options for the setup function
+        fmt_on_save = true,
+        -- Use lsp if no formatter was defined for this filetype
+        lsp_as_default_formatter = false,
+      })
+    end,
+  },
+
   -- override plugin configs
   {
     "williamboman/mason.nvim",
@@ -90,6 +123,13 @@ local plugins = {
       require("crates").setup()
     end,
   },
+
+  -- {
+  --   "wgwoods/vim-systemd-syntax",
+  --   config = function()
+  --     require("vim-systemd-syntax").setup()
+  --   end,
+  -- },
 
   -- All NvChad plugins are lazy-loaded by default
   -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`

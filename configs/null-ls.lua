@@ -26,7 +26,9 @@ local sources = {
   -- rust
   b.formatting.rustfmt,
 
-  b.diagnostics.shellcheck,
+  -- sh/bash
+  -- b.formatting.shfmt,
+  -- b.diagnostics.shellcheck,
 }
 
 null_ls.setup {
