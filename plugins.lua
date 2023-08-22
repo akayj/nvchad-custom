@@ -1,143 +1,135 @@
-local overrides = require "custom.configs.overrides"
+local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
+	-- Override plugin definition options
 
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      -- format & linting
-      {
-        "jose-elias-alvarez/null-ls.nvim",
-        config = function()
-          require "custom.configs.null-ls"
-        end,
-      },
-    },
-    config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
-  },
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			-- format & linting
+			{
+				"jose-elias-alvarez/null-ls.nvim",
+				config = function()
+					require("custom.configs.null-ls")
+				end,
+			},
+		},
+		config = function()
+			require("plugins.configs.lspconfig")
+			require("custom.configs.lspconfig")
+		end, -- Override to setup mason-lspconfig
+	},
 
-  {
-    "nvimdev/guard.nvim",
-    init = function (_)
-      local ft = require('guard.filetype')
-      ft('go'):fmt('lsp')
-        :append('golines')
-        :lint('golangci')
+	{
+		"nvimdev/guard.nvim",
+		init = function(_)
+			local ft = require("guard.filetype")
+			-- ft("c"):fmt("clang-format"):lint("clang-tidy")
 
-      ft('sh'):fmt('shfmt')
-        :lint('shellcheck')
+			ft("lua"):fmt("stylua")
 
-      ft('typescript,javascript,typescriptreact'):fmt('prettier')
-    end,
-    config = function()
-      -- local ft = require('guard.filetype')
-      --
-      -- ft('go'):fmt('lsp')
-      --   :append('golines')
-      --   :lint('golangci')
-      --
-      -- ft('sh'):fmt('shfmt')
-      --   :lint('shellcheck')
+			ft("go"):fmt("lsp"):append("golines"):lint("golangci")
 
-      -- Call setup() LAST!
-      require('guard').setup({
-        -- the only options for the setup function
-        fmt_on_save = true,
-        -- Use lsp if no formatter was defined for this filetype
-        lsp_as_default_formatter = false,
-      })
-    end,
-  },
+			ft("sh"):fmt("shfmt"):lint("shellcheck")
 
-  -- override plugin configs
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
+			ft("typescript,javascript,typescriptreact"):fmt("prettier")
+		end,
+		config = function()
+			-- Call setup() LAST!
+			require("guard").setup({
+				-- the only options for the setup function
+				fmt_on_save = true,
+				-- Use lsp if no formatter was defined for this filetype
+				lsp_as_default_formatter = true,
+			})
+		end,
+	},
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
-  },
+	-- override plugin configs
+	{
+		"williamboman/mason.nvim",
+		opts = overrides.mason,
+	},
 
-  {
-    "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
-  },
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = overrides.treesitter,
+	},
 
-  {
-    "rcarriga/nvim-notify",
-    lazy = false,
-    config = function()
-      local notify = require('notify')
-      vim.notify = notify
-      notify.setup()
-    end,
-  },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = overrides.nvimtree,
+	},
 
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
+	{
+		"rcarriga/nvim-notify",
+		lazy = false,
+		config = function()
+			local notify = require("notify")
+			vim.notify = notify
+			notify.setup()
+		end,
+	},
 
-  {
-    "ray-x/go.nvim",
-    dependencies = {
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("go").setup()
-    end,
-    event = "CmdlineEnter",
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()',
-  },
+	-- Install a plugin
+	{
+		"max397574/better-escape.nvim",
+		event = "InsertEnter",
+		config = function()
+			require("better_escape").setup()
+		end,
+	},
 
-  {
-    "simrat39/rust-tools.nvim",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      -- Debugging
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-    },
-  },
+	{
+		"ray-x/go.nvim",
+		dependencies = {
+			"ray-x/guihua.lua",
+			"neovim/nvim-lspconfig",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("go").setup()
+		end,
+		event = "CmdlineEnter",
+		ft = { "go", "gomod" },
+		build = ':lua require("go.install").update_all_sync()',
+	},
 
-  {
-    "saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    requires = { { "nvim-lua/plenary.nvim" } },
-    config = function()
-      require("crates").setup()
-    end,
-  },
+	{
+		"simrat39/rust-tools.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			-- Debugging
+			"nvim-lua/plenary.nvim",
+			"mfussenegger/nvim-dap",
+		},
+	},
 
-  -- {
-  --   "wgwoods/vim-systemd-syntax",
-  --   config = function()
-  --     require("vim-systemd-syntax").setup()
-  --   end,
-  -- },
+	{
+		"saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		requires = { { "nvim-lua/plenary.nvim" } },
+		config = function()
+			require("crates").setup()
+		end,
+	},
 
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
+	-- {
+	--   "wgwoods/vim-systemd-syntax",
+	--   config = function()
+	--     require("vim-systemd-syntax").setup()
+	--   end,
+	-- },
+
+	-- All NvChad plugins are lazy-loaded by default
+	-- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
+	-- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
+	-- {
+	--   "mg979/vim-visual-multi",
+	--   lazy = false,
+	-- }
 }
 
 return plugins
