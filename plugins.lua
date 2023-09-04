@@ -19,6 +19,7 @@ local plugins = {
 		config = function()
 			require("plugins.configs.lspconfig")
 			require("custom.configs.lspconfig")
+			require("lspconfig").bufls.setup({})
 		end, -- Override to setup mason-lspconfig
 	},
 
@@ -26,14 +27,19 @@ local plugins = {
 		"nvimdev/guard.nvim",
 		init = function(_)
 			local ft = require("guard.filetype")
-			-- ft("c"):fmt("clang-format"):lint("clang-tidy")
+			ft("c"):fmt("clang-format"):lint("clangd")
+			ft("cpp"):fmt("clang-format"):lint("clangd")
 
 			ft("lua"):fmt("stylua")
 
 			ft("go"):fmt("lsp"):append("golines"):lint("golangci")
 			ft("rust"):fmt("lsp"):append("rustfmt")
 
+			ft("proto"):fmt("buf")
+
 			ft("sh"):fmt("shfmt"):lint("shellcheck")
+
+			ft("yaml"):fmt("prettier")
 
 			ft("typescript,javascript,typescriptreact"):fmt("prettier")
 		end,

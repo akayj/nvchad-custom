@@ -75,13 +75,16 @@ M.mason = {
 
 		-- sh/bash
 		"shellcheck",
-    "shfmt",
+		"shfmt",
 
 		-- golang
 		"gopls",
 
 		-- rust
 		"rust-analyzer",
+
+		-- protobuf
+		"bufls",
 	},
 }
 
