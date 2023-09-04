@@ -18,7 +18,7 @@ NvChad
     │   ├── init.lua
     │   ├── mappings.lua
     │   └── utils.lua
-    ├── custom <- PUT HERE
+    ├── custom <- *LINK HERE*
     └── plugins
         ├── configs
         │   ├── cmp.lua
