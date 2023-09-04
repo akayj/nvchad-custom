@@ -31,6 +31,7 @@ local plugins = {
 			ft("lua"):fmt("stylua")
 
 			ft("go"):fmt("lsp"):append("golines"):lint("golangci")
+			ft("rust"):fmt("lsp"):append("rustfmt")
 
 			ft("sh"):fmt("shfmt"):lint("shellcheck")
 
@@ -42,7 +43,7 @@ local plugins = {
 				-- the only options for the setup function
 				fmt_on_save = true,
 				-- Use lsp if no formatter was defined for this filetype
-				lsp_as_default_formatter = true,
+				lsp_as_default_formatter = false,
 			})
 		end,
 	},
