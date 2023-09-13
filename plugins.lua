@@ -32,7 +32,7 @@ local plugins = {
 
 			ft("lua"):fmt("stylua")
 
-			ft("go"):fmt("lsp"):append("golines"):lint("golangci")
+			ft("go"):fmt("golines"):lint("golangci")
 			ft("rust"):fmt("lsp"):append("rustfmt")
 
 			ft("proto"):fmt("buf")
@@ -120,6 +120,19 @@ local plugins = {
 		requires = { { "nvim-lua/plenary.nvim" } },
 		config = function()
 			require("crates").setup()
+		end,
+	},
+
+	{
+		"daskol/nvim-bnf",
+		config = function() end,
+	},
+
+	{
+		"IndianBoy42/tree-sitter-just",
+		requires = { { "NoahTheDuke/vim-just" } },
+		config = function()
+			require("tree-sitter-just").setup()
 		end,
 	},
 
