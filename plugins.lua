@@ -33,9 +33,14 @@ local plugins = {
 			ft("c"):fmt("clang-format"):lint("clang-tidy")
 			ft("cpp"):fmt("clang-format"):lint("clang-tidy")
 
-			ft("lua"):fmt("stylua")
+      ft("lua"):fmt("stylua")
 
-			ft("go"):fmt("golines"):lint("golangci-lint")
+			-- ft("go"):fmt("golines"):lint("golangci-lint")
+      ft("go"):fmt("golines"):lint({
+        cmd='golangci-lint',
+        args={'run', '--disable-all', '-E', 'errcheck'},
+        stdin=true,
+      })
 			ft("rust"):fmt("lsp"):append("rustfmt")
 
 			-- ft("proto"):fmt("buf")
