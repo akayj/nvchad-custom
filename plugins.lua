@@ -25,17 +25,20 @@ local plugins = {
 
 	{
 		"nvimdev/guard.nvim",
+    dependencies = {
+        "nvimdev/guard-collection",
+    },
 		init = function(_)
 			local ft = require("guard.filetype")
-			ft("c"):fmt("clang-format"):lint("clangd")
-			ft("cpp"):fmt("clang-format"):lint("clangd")
+			ft("c"):fmt("clang-format"):lint("clang-tidy")
+			ft("cpp"):fmt("clang-format"):lint("clang-tidy")
 
 			ft("lua"):fmt("stylua")
 
-			ft("go"):fmt("golines"):lint("golangci")
+			ft("go"):fmt("golines"):lint("golangci-lint")
 			ft("rust"):fmt("lsp"):append("rustfmt")
 
-			ft("proto"):fmt("buf")
+			-- ft("proto"):fmt("buf")
 
 			ft("sh"):fmt("shfmt"):lint("shellcheck")
 
