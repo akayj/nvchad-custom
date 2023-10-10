@@ -36,7 +36,10 @@ local plugins = {
       ft("lua"):fmt("stylua")
 
 			-- ft("go"):fmt("golines"):lint("golangci-lint")
-      ft("go"):fmt("golines"):lint({
+      ft("go"):fmt({
+        cmd = "golines",
+        args = { "-m", 128 },
+      }):lint({
         cmd='golangci-lint',
         args={'run', '--disable-all', '-E', 'errcheck'},
         stdin=true,
