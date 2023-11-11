@@ -84,7 +84,7 @@ M.mason = {
 		"rust-analyzer",
 
 		-- protobuf
-		"bufls",
+		"buf-language-server",
 	},
 }
 
